@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <!-- form here -->
+            <form>
+                <div class="form-group">
+                    <label for="lk_start_date_txt">Start Date:</label>
+                    <input type="text" class="form-control" name="lk_start_date_txt" id="lk_start_date_txt" />
+                </div>
+                <div class="form-group">
+                    <label for="lk_end_date_txt">End Date:</label>
+                    <input type="text" class="form-control" name="lk_end_date_txt" id="lk_end_date_txt" />
+                </div>
+                <div class="form-group">
+                    <label for="lk_province_sel">Province:</label>
+                    <select class="form-control" name="lk_province_sel" id="lk_province_sel">
+                        <option value="">Select Province</option>
+                        <option value="Laguna">Laguna</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" /> Natural
+                    </label>
+                    <label>
+                        <input type="checkbox" checked /> NDVI
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <app-responsive-media class="col-sm-3 col-md-4 col-lg-3" *ngFor="let image of images">
+                    <img
+                        src="https://placeholdit.imgix.net/~text?txtsize=33&amp;txt=256x256&amp;w=256&amp;h=256"
+                        alt="SARAi Logo"
+                        #media />
+                </app-responsive-media>
+            </div>
+        </div>
+    </div>
+</div>
+
+

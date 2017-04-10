@@ -40,18 +40,20 @@ export class ResponsiveMediaComponent implements AfterViewInit, OnDestroy {
   ) { }
 
   ngAfterViewInit() {
-    // add class to the media element
-    this.renderer.addClass(this.media.nativeElement, 'aspect__media-content');
+    if (typeof this.media !== 'undefined') {
+      // add class to the media element
+      this.renderer.addClass(this.media.nativeElement, 'aspect__media-content');
 
-    // add ratio class to the wrapper element when ratio is provided
-    if (typeof this.ratio !== 'undefined') {
-      this.renderer.addClass(this.aspectContainer.nativeElement, `aspect-ratio-${this.ratio}`);
-    }
+      // add ratio class to the wrapper element when ratio is provided
+      if (typeof this.ratio !== 'undefined') {
+        this.renderer.addClass(this.aspectContainer.nativeElement, `aspect-ratio-${this.ratio}`);
+      }
 
-    if (this.showLoader) {
-      // TODO: check if the media is an image type
-      // listen to load event of the image
-      this.loadEvt = this.renderer.listen(this.media.nativeElement, 'load', this.onMediaLoad.bind(this));
+      if (this.showLoader) {
+        // TODO: check if the media is an image type
+        // listen to load event of the image
+        this.loadEvt = this.renderer.listen(this.media.nativeElement, 'load', this.onMediaLoad.bind(this));
+      }
     }
   }
 

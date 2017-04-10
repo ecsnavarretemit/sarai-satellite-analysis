@@ -5,6 +5,7 @@
  * Licensed under MIT
  */
 
+import { Renderer2, ChangeDetectorRef } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResponsiveMediaComponent } from './responsive-media.component';
@@ -15,7 +16,11 @@ describe('ResponsiveMediaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ResponsiveMediaComponent ]
+      declarations: [ ResponsiveMediaComponent ],
+      providers: [
+        Renderer2,
+        ChangeDetectorRef
+      ]
     })
     .compileComponents();
   }));
@@ -29,6 +34,7 @@ describe('ResponsiveMediaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
 });
 
 

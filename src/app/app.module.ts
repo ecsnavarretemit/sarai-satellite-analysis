@@ -12,7 +12,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DefaultModule } from './default';
+import { ServicesModule } from './shared';
 import { AppComponent } from './app.component';
+
+// rxjs imports so that all parts of code that uses rxjs import
+// will immediately receive this operator/additions
+import 'rxjs/add/operator/map';
 
 @NgModule({
   declarations: [
@@ -23,6 +28,7 @@ import { AppComponent } from './app.component';
     FormsModule,
     HttpModule,
     AppRoutingModule,
+    ServicesModule.forRoot(),
     DefaultModule
   ],
   providers: [],

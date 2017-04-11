@@ -8,6 +8,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SharedUiModule } from '../../../shared/ui';
+import { DefaultFormsModule } from '../../shared/forms';
 import { HomeComponent } from './home.component';
 
 describe('HomeComponent', () => {
@@ -17,7 +18,8 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        SharedUiModule
+        SharedUiModule,
+        DefaultFormsModule
       ],
       declarations: [ HomeComponent ]
     })

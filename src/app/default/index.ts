@@ -7,5 +7,6 @@
 
 export * from './default.module';
 export * from './pages';
+export * from './shared';
 
 

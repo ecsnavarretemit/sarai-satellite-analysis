@@ -18,6 +18,7 @@ import { EarthEngineService, LocationsService } from '../../../shared/services';
 export class HomeComponent implements OnInit {
   public images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   public loaderVisible = false;
+  public noticeVisible = true;
   public provinces: Observable<any[]>;
   public satellites: Observable<any[]>;
   public satelliteStyles: Observable<any[]>;
@@ -43,6 +44,7 @@ export class HomeComponent implements OnInit {
   onSatelliteDataFilter(data: any) {
     this.renderer.addClass(this.imagesRowWrapper.nativeElement, 'loading');
 
+    this.noticeVisible = false;
     this.loaderVisible = true;
   }
 

@@ -2,6 +2,7 @@
 // [home.component.sass]
 // ******************************************************#
 
+@import "node_modules/bourbon/app/assets/stylesheets/bourbon"
 @import "node_modules/sass-mediaqueries/media-queries"
 
 .satellite-images-wrapper
@@ -18,6 +19,23 @@
     width: calc(100% - 30px)
     left: 15px
 
+.empty-message
+  width: 93%
+  margin: 0 auto
+  text-align: center
+
+  p
+    padding: 10px
+    margin: 0
+    color: #000000
+    font-size: 1.7em
+    background: #BEBEBE
+
+    +border-top-radius(5px)
+    +border-right-radius(5px)
+    +border-bottom-radius(5px)
+    +border-left-radius(5px)
+
 // --------------------------------------
 // [Browser Width: 992px up] ::start
 // --------------------------------------
@@ -30,6 +48,9 @@
     &.loading
       height: calc(100vh - 70px)
       min-height: 0
+
+  .empty-message
+    width: 40em
 
 // --------------------------------------
 // [Browser Width: 992px up] ::end

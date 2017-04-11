@@ -1,5 +1,5 @@
 /*!
- * Earth Engine Service
+ * Earth Engine Service (Mock)
  *
  * Copyright(c) Exequiel Ceasar Navarrete <esnavarrete1@up.edu.ph>
  * Licensed under MIT

@@ -11,6 +11,8 @@ import { SharedUiModule } from '../../../shared/ui';
 import { DefaultFormsModule } from '../../shared/forms';
 import { HomeComponent } from './home.component';
 
+import { MOCKED_PROVIDERS } from '../../../shared/services';
+
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
@@ -20,6 +22,9 @@ describe('HomeComponent', () => {
       imports: [
         SharedUiModule,
         DefaultFormsModule
+      ],
+      providers: [
+        ...MOCKED_PROVIDERS
       ],
       declarations: [ HomeComponent ]
     })

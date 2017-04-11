@@ -7,12 +7,15 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule as NgFormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SatelliteDataFilterFormComponent } from './satellite-data-filter-form/satellite-data-filter-form.component';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    NgFormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     SatelliteDataFilterFormComponent

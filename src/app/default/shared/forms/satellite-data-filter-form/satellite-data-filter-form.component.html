@@ -1,36 +1,36 @@
-<form>
+<form [formGroup]="filterForm" (ngSubmit)="processRequest()">
     <div class="form-group">
         <label for="lk_province_sel">Satellite Data Source:</label>
-        <select class="form-control" name="lk_province_sel" id="lk_province_sel">
+        <select class="form-control" name="lk_province_sel" id="lk_province_sel" [formControl]="satelliteSel">
             <option value="">Select Satellite Data Source</option>
-            <option value="landsat-8">Landsat 8</option>
+            <option *ngFor="let satellite of satellites" [value]="satellite.slug">{{ satellite.name }}</option>
         </select>
     </div>
     <div class="form-group">
         <label for="lk_start_date_txt">Start Date:</label>
-        <input type="text" class="form-control" name="lk_start_date_txt" id="lk_start_date_txt" />
+        <input type="text" class="form-control" name="lk_start_date_txt" id="lk_start_date_txt" [formControl]="startDateTxt" />
     </div>
     <div class="form-group">
         <label for="lk_end_date_txt">End Date:</label>
-        <input type="text" class="form-control" name="lk_end_date_txt" id="lk_end_date_txt" />
+        <input type="text" class="form-control" name="lk_end_date_txt" id="lk_end_date_txt" [formControl]="endDateTxt" />
     </div>
     <div class="form-group">
         <label for="lk_province_sel">Province:</label>
-        <select class="form-control" name="lk_province_sel" id="lk_province_sel">
+        <select class="form-control" name="lk_province_sel" id="lk_province_sel" [formControl]="provinceSel">
             <option value="">Select Province</option>
-            <option value="Laguna">Laguna</option>
+            <option *ngFor="let province of provinces" [value]="province.slug">{{ province.name }}</option>
         </select>
     </div>
     <div class="form-group">
-        <label>
-            <input type="checkbox" /> Natural
-        </label>
-        <label>
-            <input type="checkbox" checked /> NDVI
-        </label>
+        <div class="radio-inline" *ngFor="let imageStyle of imageStyles">
+            <label class="radio_wrapper">
+                <input type="radio" name="lk_image_style_rad" [formControl]="imageStyleRad" [value]="imageStyle.slug" />
+                <span class="radio_label">{{ imageStyle.name }}</span>
+            </label>
+        </div>
     </div>
 
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-default" [disabled]="!filterForm.valid">Submit</button>
 </form>
 
 

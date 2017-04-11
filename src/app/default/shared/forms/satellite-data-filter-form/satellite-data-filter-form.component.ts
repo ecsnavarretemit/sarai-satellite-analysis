@@ -5,7 +5,8 @@
  * Licensed under MIT
  */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-satellite-data-filter-form',
@@ -13,10 +14,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./satellite-data-filter-form.component.sass']
 })
 export class SatelliteDataFilterFormComponent implements OnInit {
+  public filterForm: FormGroup;
+  public satelliteSel: FormControl;
+  public startDateTxt: FormControl;
+  public endDateTxt: FormControl;
+  public provinceSel: FormControl;
+  public imageStyleRad: FormControl;
 
-  constructor() { }
+  @Input('satellites') satellites: any;
+  @Input('provinces') provinces: any;
+  @Input('imageStyles') imageStyles: any;
+  @Output() filter: EventEmitter<any> = new EventEmitter<any>();
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    this.satelliteSel = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.startDateTxt = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.endDateTxt = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.provinceSel = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.imageStyleRad = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.filterForm = this.fb.group({
+      satelliteSel: this.satelliteSel,
+      startDateTxt: this.startDateTxt,
+      endDateTxt: this.endDateTxt,
+      provinceSel: this.provinceSel,
+      imageStyleRad: this.imageStyleRad
+    });
+  }
+
+  processRequest() {
+    // emit the value to the listener of the component's output
+    this.filter.emit(this.filterForm.value);
   }
 
 }

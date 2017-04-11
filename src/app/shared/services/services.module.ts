@@ -9,6 +9,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { APIS_PROVIDER } from './api-config.service';
+import { LocationsService } from './locations.service';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ export class ServicesModule {
     return {
       ngModule: ServicesModule,
       providers: [
-        APIS_PROVIDER
+        APIS_PROVIDER,
+        LocationsService
       ]
     };
   }

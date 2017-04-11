@@ -9,14 +9,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedUiModule } from './ui';
+import { ServicesModule } from './services';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedUiModule
+    SharedUiModule,
+    ServicesModule
   ],
   exports: [
-    SharedUiModule
+    SharedUiModule,
+    ServicesModule
   ]
 })
 export class SharedModule { }

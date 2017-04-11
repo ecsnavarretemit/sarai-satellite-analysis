@@ -7,5 +7,6 @@
 
 export * from './shared.module';
 export * from './ui';
+export * from './services';
 
 

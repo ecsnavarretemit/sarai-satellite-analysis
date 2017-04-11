@@ -7,5 +7,6 @@
 
 export * from './services.module';
 export * from './api-config.service';
+export * from './locations.service';
 
 

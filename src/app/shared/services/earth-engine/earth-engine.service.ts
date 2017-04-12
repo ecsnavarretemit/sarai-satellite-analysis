@@ -48,12 +48,12 @@ export class EarthEngineService {
     }]);
   }
 
-  getSatelliteImages(options = {}): Observable<any> {
-    const resolvedOptions = assign({}, options, {
+  getSatelliteImages(startDate, endDate, options = {}): Observable<any> {
+    const resolvedOptions = assign({}, {
       province: null,
       satellite: 'landsat-8',
       dimensions: '256x256'
-    });
+    }, options);
 
     let queryString = `satellite=${resolvedOptions.satellite}&dimensions=${resolvedOptions.dimensions}`;
 
@@ -66,7 +66,7 @@ export class EarthEngineService {
     headers.append('Content-Type', 'application/json');
 
     return this.http
-      .get(`${this.apisConfig.satellite_images.endpoint}?${queryString}`, {
+      .get(`${this.apisConfig.satellite_images.ndvi.endpoint}/${startDate}/${endDate}?${queryString}`, {
         headers
       })
       .map((res: Response) => res.json())

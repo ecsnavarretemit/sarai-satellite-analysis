@@ -15,7 +15,7 @@ export class MockEarthEngineService extends EarthEngineService {
     super(null, null);
   }
 
-  getSatelliteImages(options = {}): Observable<any> {
+  getSatelliteImages(startDate, endDate, options = {}): Observable<any> {
     return Observable.of({
       images: [{
         date: '2016-06-01',

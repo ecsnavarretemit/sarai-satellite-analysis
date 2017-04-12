@@ -5,13 +5,20 @@
  * Licensed under MIT
  */
 
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import assign from 'lodash-es/assign';
+
+import { APIS_CONFIG } from '../api-config.service';
 
 @Injectable()
 export class EarthEngineService {
 
-  constructor() { }
+  constructor(
+    @Inject(APIS_CONFIG) private apisConfig: any,
+    private http: Http
+  ) { }
 
   getSatellites(): Observable<any[]> {
     return Observable.of([{
@@ -39,6 +46,31 @@ export class EarthEngineService {
       name: 'NDVI',
       slug: 'ndvi'
     }]);
+  }
+
+  getSatelliteImages(options = {}): Observable<any> {
+    const resolvedOptions = assign({}, options, {
+      province: null,
+      satellite: 'landsat-8',
+      dimensions: '256x256'
+    });
+
+    let queryString = `satellite=${resolvedOptions.satellite}&dimensions=${resolvedOptions.dimensions}`;
+
+    if (resolvedOptions.province !== null) {
+      queryString += `&province=${resolvedOptions.province}`;
+    }
+
+    // assemble the request headers
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    return this.http
+      .get(`${this.apisConfig.satellite_images.endpoint}?${queryString}`, {
+        headers
+      })
+      .map((res: Response) => res.json())
+      ;
   }
 
 }

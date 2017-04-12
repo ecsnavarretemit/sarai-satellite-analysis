@@ -11,6 +11,10 @@ import { EarthEngineService } from './earth-engine.service';
 
 export class MockEarthEngineService extends EarthEngineService {
 
+  constructor() {
+    super(null, null);
+  }
+
   getSatelliteImages(options = {}): Observable<any> {
     return Observable.of({
       images: [{

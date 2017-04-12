@@ -1,32 +1,62 @@
 <form [formGroup]="filterForm" (ngSubmit)="processRequest()">
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="!satelliteSel.valid && satelliteSel.touched">
         <label for="lk_province_sel">Satellite Data Source:</label>
         <select class="form-control" name="lk_province_sel" id="lk_province_sel" [formControl]="satelliteSel">
             <option value="">Select Satellite Data Source</option>
             <option *ngFor="let satellite of satellites" [value]="satellite.slug">{{ satellite.name }}</option>
         </select>
+
+        <div class="help-block-wrapper" [class.hidden]="satelliteSel.valid || satelliteSel.untouched">
+            <span class="help-block" *ngIf="satelliteSel.hasError('required') && satelliteSel.touched">
+                Satellite Data Source is required
+            </span>
+        </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="!startDateTxt.valid && startDateTxt.touched">
         <label for="lk_start_date_txt">Start Date:</label>
         <input type="text" class="form-control" name="lk_start_date_txt" id="lk_start_date_txt" [formControl]="startDateTxt" />
+
+        <div class="help-block-wrapper" [class.hidden]="startDateTxt.valid || startDateTxt.untouched">
+            <span class="help-block" *ngIf="startDateTxt.hasError('required') && startDateTxt.touched">
+                Starting Date is required.
+            </span>
+        </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="!endDateTxt.valid && endDateTxt.touched">
         <label for="lk_end_date_txt">End Date:</label>
         <input type="text" class="form-control" name="lk_end_date_txt" id="lk_end_date_txt" [formControl]="endDateTxt" />
+
+        <div class="help-block-wrapper" [class.hidden]="endDateTxt.valid || endDateTxt.untouched">
+            <span class="help-block" *ngIf="endDateTxt.hasError('required') && endDateTxt.touched">
+                End Date is required.
+            </span>
+        </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="!provinceSel.valid && provinceSel.touched">
         <label for="lk_province_sel">Province:</label>
         <select class="form-control" name="lk_province_sel" id="lk_province_sel" [formControl]="provinceSel">
             <option value="">Select Province</option>
             <option *ngFor="let province of provinces" [value]="province.slug">{{ province.name }}</option>
         </select>
+
+        <div class="help-block-wrapper" [class.hidden]="provinceSel.valid || provinceSel.untouched">
+            <span class="help-block" *ngIf="provinceSel.hasError('required') && provinceSel.touched">
+                Province is required.
+            </span>
+        </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" [class.has-error]="!imageStyleRad.valid && imageStyleRad.touched">
         <div class="radio-inline" *ngFor="let imageStyle of imageStyles">
             <label class="radio_wrapper">
                 <input type="radio" name="lk_image_style_rad" [formControl]="imageStyleRad" [value]="imageStyle.slug" />
                 <span class="radio_label">{{ imageStyle.name }}</span>
             </label>
+        </div>
+
+        <div class="help-block-wrapper" [class.hidden]="imageStyleRad.valid || imageStyleRad.untouched">
+            <span class="help-block" *ngIf="imageStyleRad.hasError('required') && imageStyleRad.touched">
+                Image Style is is required.
+            </span>
         </div>
     </div>
 

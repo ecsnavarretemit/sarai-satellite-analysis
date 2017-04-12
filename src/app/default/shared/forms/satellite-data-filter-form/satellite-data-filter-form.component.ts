@@ -59,8 +59,16 @@ export class SatelliteDataFilterFormComponent implements OnInit {
   }
 
   processRequest() {
+    const values = this.filterForm.value;
+
     // emit the value to the listener of the component's output
-    this.filter.emit(this.filterForm.value);
+    this.filter.emit({
+      satellite: values.satelliteSel,
+      startDate: values.startDateTxt,
+      endDate: values.endDateTxt,
+      province: values.provinceSel,
+      imageStyle: values.imageStyleRad
+    });
   }
 
 }

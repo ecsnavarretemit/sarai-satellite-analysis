@@ -36,7 +36,7 @@
         <label for="lk_province_sel">Province:</label>
         <select class="form-control" name="lk_province_sel" id="lk_province_sel" [formControl]="provinceSel">
             <option value="">Select Province</option>
-            <option *ngFor="let province of provinces" [value]="province.slug">{{ province.name }}</option>
+            <option *ngFor="let province of provinces" [value]="province.name">{{ province.name }}</option>
         </select>
 
         <div class="help-block-wrapper" [class.hidden]="provinceSel.valid || provinceSel.untouched">

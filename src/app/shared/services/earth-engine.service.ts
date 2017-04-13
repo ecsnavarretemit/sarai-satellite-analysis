@@ -1,5 +1,5 @@
 /*!
- * Earth Engine Service (Mock)
+ * Earth Engine Service
  *
  * Copyright(c) Exequiel Ceasar Navarrete <esnavarrete1@up.edu.ph>
  * Licensed under MIT
@@ -10,7 +10,7 @@ import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import assign from 'lodash-es/assign';
 
-import { APIS_CONFIG } from '../api-config.service';
+import { APIS_CONFIG } from './api-config.service';
 
 @Injectable()
 export class EarthEngineService {

@@ -9,7 +9,7 @@ import { async, inject, TestBed } from '@angular/core/testing';
 import { Http, BaseRequestOptions, RequestMethod, Response, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 
-import { APIS_PROVIDER } from '../api-config.service';
+import { APIS_PROVIDER } from './api-config.service';
 import { LocationsService } from './locations.service';
 
 describe('LocationsService', () => {

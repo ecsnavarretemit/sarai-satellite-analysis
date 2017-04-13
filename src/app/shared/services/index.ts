@@ -7,9 +7,7 @@
 
 export * from './services.module';
 export * from './api-config.service';
-export * from './earth-engine/earth-engine.service';
-export * from './earth-engine/earth-engine-mock.service';
-export * from './locations/locations.service';
-export * from './locations/locations-mock.service';
+export * from './earth-engine.service';
+export * from './locations.service';
 
 

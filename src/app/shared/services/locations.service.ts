@@ -9,7 +9,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { APIS_CONFIG } from '../api-config.service';
+import { APIS_CONFIG } from './api-config.service';
 
 @Injectable()
 export class LocationsService {

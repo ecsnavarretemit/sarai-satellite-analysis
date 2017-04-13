@@ -9,15 +9,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { APIS_PROVIDER } from './api-config.service';
-import { EarthEngineService } from './earth-engine/earth-engine.service';
-import { MockEarthEngineService } from './earth-engine/earth-engine-mock.service';
-import { LocationsService } from './locations/locations.service';
-import { MockLocationsService } from './locations/locations-mock.service';
-
-export const MOCKED_PROVIDERS = [
-  { provide: EarthEngineService, useClass: MockEarthEngineService },
-  { provide: LocationsService, useClass: MockLocationsService }
-];
+import { EarthEngineService } from './earth-engine.service';
+import { LocationsService } from './locations.service';
 
 @NgModule({
   imports: [

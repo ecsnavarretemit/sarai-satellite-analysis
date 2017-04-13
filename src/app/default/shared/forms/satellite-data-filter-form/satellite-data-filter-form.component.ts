@@ -69,21 +69,8 @@ export class SatelliteDataFilterFormComponent implements OnInit {
     // add 1 day to the parsed date
     parsedDate.add(1, 'days');
 
-    // save the formatted date
-    const formattedDate = parsedDate.format('YYYY-MM-DD');
-
     // set the minimum date for the end datepicker
-    this.endDatePicker.setOption('minDate', formattedDate);
-
-    // close the start datepicker
-    this.startDatePicker.hidePicker();
-
-    // show the end datepicker
-    setTimeout(() => {
-      this.endDatePicker.showPicker();
-
-      this.endDatePicker.jumpToDate(formattedDate);
-    }, 0);
+    this.endDatePicker.setOption('minDate', parsedDate.toDate());
   }
 
   processRequest() {

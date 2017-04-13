@@ -37,16 +37,30 @@ export class HomeComponent implements OnInit {
       ;
   }
 
-  onSatelliteDataFilter(data: any) {
+  processImages(imagesRequest: Observable<any>) {
     this.loaderVisible = true;
 
-    this.images = this.ee
+    // multicast the result of this observable to prevent double subscription.
+    this.images = imagesRequest.share();
+
+    // unsubscribe and remove loading screen when processing of images are finished
+    const imagesSubscription = this.images.subscribe(() => {
+      this.loaderVisible = false;
+
+      imagesSubscription.unsubscribe();
+    });
+  }
+
+  onSatelliteDataFilter(data: any) {
+    const imagesRequest = this.ee
       .getSatelliteImages(data.startDate, data.endDate, {
         province: data.province,
         satellite: data.satellite
       })
       .map((res: any) => res.images)
       ;
+
+    this.processImages(imagesRequest);
   }
 
 }

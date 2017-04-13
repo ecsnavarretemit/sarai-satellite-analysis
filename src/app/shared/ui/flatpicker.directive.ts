@@ -27,7 +27,7 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
   @Output('ready') ready: EventEmitter<string> = new EventEmitter<string>();
 
   public dateValue: string;
-  private pluginInstance: Flatpickr;
+  private _pluginInstance: Flatpickr;
   private _propagateChange = (_: any) => {};
   private _propagateTouch = () => {};
 
@@ -36,23 +36,30 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
     private renderer: Renderer2
   ) { }
 
+  // throw a warning to the component user if he tries to access this property directly.
+  get pluginInstance(): Flatpickr {
+    console.warn('Accessing this property may bear unexpected results. Please use the shimmed methods for the correct behavior.');
+
+    return this._pluginInstance;
+  }
+
   showPicker() {
     // idk why we need this but it works!!
     setTimeout(() => {
-      this.pluginInstance.open();
+      this._pluginInstance.open();
     }, 0);
   }
 
   hidePicker() {
-    this.pluginInstance.close();
+    this._pluginInstance.close();
   }
 
   jumpToDate(date: string | Date) {
-    this.pluginInstance.jumpToDate(date);
+    this._pluginInstance.jumpToDate(date);
   }
 
   clearInput() {
-    this.pluginInstance.clear();
+    this._pluginInstance.clear();
   }
 
   setOption(option, value) {
@@ -65,7 +72,7 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
     this.fpOptions = assign({}, this.fpOptions, newOptionObj);
 
     // reflect the new plugin option
-    this.pluginInstance.set(option, value);
+    this._pluginInstance.set(option, value);
   }
 
   ngOnInit() {
@@ -99,11 +106,11 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
     this.renderer.setAttribute(this.elementRef.nativeElement, 'type', 'text');
 
     // instantiate the plugin
-    this.pluginInstance = new Flatpickr(this.elementRef.nativeElement, this.fpOptions);
+    this._pluginInstance = new Flatpickr(this.elementRef.nativeElement, this.fpOptions);
   }
 
   ngOnDestroy() {
-    this.pluginInstance.destroy();
+    this._pluginInstance.destroy();
   }
 
   writeValue(value: any) {
@@ -111,8 +118,8 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
       this.dateValue = value;
     }
 
-    if (typeof value !== 'undefined' && typeof this.pluginInstance !== 'undefined') {
-      this.pluginInstance.setDate(value);
+    if (typeof value !== 'undefined' && typeof this._pluginInstance !== 'undefined') {
+      this._pluginInstance.setDate(value);
     }
   }
 

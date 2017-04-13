@@ -6,6 +6,7 @@
  */
 
 export { UiModule as SharedUiModule } from './ui.module';
+export * from './choices.directive';
 export * from './flatpicker.directive';
 export * from './responsive-media/responsive-media.component';
 

@@ -5,8 +5,11 @@
  * Licensed under MIT
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
+
+import { FlatpickerDirective } from '../../../../shared/ui';
 
 @Component({
   selector: 'app-satellite-data-filter-form',
@@ -25,6 +28,8 @@ export class SatelliteDataFilterFormComponent implements OnInit {
   @Input('provinces') provinces: any;
   @Input('imageStyles') imageStyles: any;
   @Output() filter: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('startDatePicker') startDatePicker: FlatpickerDirective;
+  @ViewChild('endDatePicker') endDatePicker: FlatpickerDirective;
 
   constructor(private fb: FormBuilder) {}
 
@@ -56,6 +61,29 @@ export class SatelliteDataFilterFormComponent implements OnInit {
       provinceSel: this.provinceSel,
       imageStyleRad: this.imageStyleRad
     });
+  }
+
+  onStartDateChange(date: string) {
+    const parsedDate = moment(date, 'YYYY-MM-DD');
+
+    // add 1 day to the parsed date
+    parsedDate.add(1, 'days');
+
+    // save the formatted date
+    const formattedDate = parsedDate.format('YYYY-MM-DD');
+
+    // set the minimum date for the end datepicker
+    this.endDatePicker.setOption('minDate', formattedDate);
+
+    // close the start datepicker
+    this.startDatePicker.hidePicker();
+
+    // show the end datepicker
+    setTimeout(() => {
+      this.endDatePicker.showPicker();
+
+      this.endDatePicker.jumpToDate(formattedDate);
+    }, 0);
   }
 
   processRequest() {

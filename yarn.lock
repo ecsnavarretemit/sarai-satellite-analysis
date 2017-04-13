@@ -125,6 +125,10 @@
     magic-string "^0.19.0"
     source-map "^0.5.6"
 
+"@types/flatpickr@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@types/flatpickr/-/flatpickr-2.2.1.tgz#252466cebefa39f35dc5beb93dbca75c367c04d9"
+
 "@types/jasmine@2.5.38":
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
@@ -1735,6 +1739,10 @@ findup-sync@~0.3.0:
   resolved "https://registry.yarnpkg.com/findup-sync/-/findup-sync-0.3.0.tgz#37930aa5d816b777c03445e1966cc6790a4c0b16"
   dependencies:
     glob "~5.0.0"
+
+flatpickr@^2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-2.5.1.tgz#8ec5e9e24b0c33d0c9e1057c131575fa63566b5c"
 
 flatten@^1.0.2:
   version "1.0.2"

@@ -1,4 +1,3 @@
-
 /*!
  * Locations Service (Mock)
  *
@@ -8,7 +7,7 @@
 
 import { Observable } from 'rxjs/Observable';
 
-import { LocationsService } from './locations.service';
+import { LocationsService } from '../../locations.service';
 
 export class MockLocationsService extends LocationsService {
 

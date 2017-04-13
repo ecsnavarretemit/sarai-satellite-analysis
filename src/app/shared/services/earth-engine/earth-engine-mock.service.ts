@@ -16,11 +16,22 @@ export class MockEarthEngineService extends EarthEngineService {
   }
 
   getSatelliteImages(startDate, endDate, options = {}): Observable<any> {
+    const images = [{
+      date: '2016-06-01',
+      url: 'http://localhost:4200/assets/img/test/dummy.png'
+    }, {
+      date: '2016-06-13',
+      url: 'http://localhost:4200/assets/img/test/dummy.png'
+    }, {
+      date: '2016-06-25',
+      url: 'http://localhost:4200/assets/img/test/dummy.png'
+    }, {
+      date: '2016-07-07',
+      url: 'http://localhost:4200/assets/img/test/dummy.png'
+    }];
+
     return Observable.of({
-      images: [{
-        date: '2016-06-01',
-        url: 'http://127.0.0.1:8000/static/earth-engine/eaf1356091f221c2f542809c276b812c06657fdd40593866970a2e96/2016-06-01.jpg'
-      }],
+      images,
       success: true,
       truncated: false
     });

@@ -12,6 +12,7 @@
 // [Operators] ::start
 // ------------------------------------------------------#
 
+export * from 'rxjs/add/operator/do';
 export * from 'rxjs/add/operator/map';
 export * from 'rxjs/add/operator/share';
 

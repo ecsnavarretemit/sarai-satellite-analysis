@@ -41,14 +41,13 @@ export class HomeComponent implements OnInit {
     this.loaderVisible = true;
 
     // multicast the result of this observable to prevent double subscription.
-    this.images = imagesRequest.share();
-
-    // unsubscribe and remove loading screen when processing of images are finished
-    const imagesSubscription = this.images.subscribe(() => {
-      this.loaderVisible = false;
-
-      imagesSubscription.unsubscribe();
-    });
+    this.images = imagesRequest
+      .do(() => {
+        // remove loading screen when processing of images are finished
+        this.loaderVisible = false;
+      })
+      .share()
+      ;
   }
 
   onSatelliteDataFilter(data: any) {

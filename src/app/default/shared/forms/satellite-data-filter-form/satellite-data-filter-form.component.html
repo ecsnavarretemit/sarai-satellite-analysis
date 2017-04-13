@@ -23,6 +23,7 @@
             <input type="text" class="form-control" name="lk_start_date_txt" id="lk_start_date_txt" placeholder="Select Date"
                 [formControl]="startDateTxt"
                 appFlatpicker
+                [fpOptions]="startDateOpts"
                 #startDatePicker=flatpickr
                 (dateChange)="onStartDateChange($event)" />
 
@@ -47,6 +48,7 @@
             <input type="text" class="form-control" name="lk_end_date_txt" id="lk_end_date_txt" placeholder="Select Date"
                 [formControl]="endDateTxt"
                 appFlatpicker
+                [fpOptions]="endDateOpts"
                 #endDatePicker=flatpickr />
 
             <div class="input-group-addon" *ngIf="!datepickerMobile" (click)="endDatePicker.showPicker()">

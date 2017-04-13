@@ -24,6 +24,8 @@ export class SatelliteDataFilterFormComponent implements AfterViewInit, OnInit {
   public provinceSel: FormControl;
   public imageStyleRad: FormControl;
   public datepickerMobile = false;
+  public startDateOpts: any;
+  public endDateOpts: any;
 
   @Input('satellites') satellites: any;
   @Input('provinces') provinces: any;
@@ -62,6 +64,15 @@ export class SatelliteDataFilterFormComponent implements AfterViewInit, OnInit {
       provinceSel: this.provinceSel,
       imageStyleRad: this.imageStyleRad
     });
+
+    // set the default options for the date picker
+    this.startDateOpts = {
+      maxDate: moment().subtract(1, 'days').toDate()
+    };
+
+    this.endDateOpts = {
+      maxDate: moment().toDate()
+    };
   }
 
   ngAfterViewInit() {
@@ -76,6 +87,9 @@ export class SatelliteDataFilterFormComponent implements AfterViewInit, OnInit {
 
     // set the minimum date for the end datepicker
     this.endDatePicker.setOption('minDate', parsedDate.toDate());
+
+    // move the view to the date
+    this.endDatePicker.jumpToDate(parsedDate.toDate());
   }
 
   processRequest() {

@@ -11,9 +11,9 @@ import { By } from '@angular/platform-browser';
 
 import { ResponsiveMediaComponent, SharedUiModule } from '../../../shared/ui';
 import { DefaultFormsModule } from '../../shared/forms';
+import { EarthEngineService } from '../../../shared/services';
+import { MOCKED_PROVIDERS } from '../../../shared/services/testing';
 import { HomeComponent } from './home.component';
-
-import { MOCKED_PROVIDERS, EarthEngineService } from '../../../shared/services';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

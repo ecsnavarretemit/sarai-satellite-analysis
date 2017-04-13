@@ -21,7 +21,7 @@ import padStart from 'lodash-es/padStart';
     multi: true
   }]
 })
-export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
+export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor, OnDestroy, OnInit {
   @Input('fpOptions') fpOptions: any = {};
   @Output('close') close: EventEmitter<string> = new EventEmitter<string>();
   @Output('dateChange') dateChange: EventEmitter<string> = new EventEmitter<string>();

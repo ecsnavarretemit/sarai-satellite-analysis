@@ -5,26 +5,32 @@
  * Licensed under MIT
  */
 
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import * as moment from 'moment';
+
+import { FlatpickerDirective } from '../../../../shared/ui';
 
 @Component({
   selector: 'app-satellite-data-filter-form',
   templateUrl: './satellite-data-filter-form.component.html',
   styleUrls: ['./satellite-data-filter-form.component.sass']
 })
-export class SatelliteDataFilterFormComponent implements OnInit {
+export class SatelliteDataFilterFormComponent implements AfterViewInit, OnInit {
   public filterForm: FormGroup;
   public satelliteSel: FormControl;
   public startDateTxt: FormControl;
   public endDateTxt: FormControl;
   public provinceSel: FormControl;
   public imageStyleRad: FormControl;
+  public datepickerMobile = false;
 
   @Input('satellites') satellites: any;
   @Input('provinces') provinces: any;
   @Input('imageStyles') imageStyles: any;
   @Output() filter: EventEmitter<any> = new EventEmitter<any>();
+  @ViewChild('startDatePicker') startDatePicker: FlatpickerDirective;
+  @ViewChild('endDatePicker') endDatePicker: FlatpickerDirective;
 
   constructor(private fb: FormBuilder) {}
 
@@ -56,6 +62,20 @@ export class SatelliteDataFilterFormComponent implements OnInit {
       provinceSel: this.provinceSel,
       imageStyleRad: this.imageStyleRad
     });
+  }
+
+  ngAfterViewInit() {
+    this.datepickerMobile = this.startDatePicker.isMobile;
+  }
+
+  onStartDateChange(date: string) {
+    const parsedDate = moment(date, 'YYYY-MM-DD');
+
+    // add 1 day to the parsed date
+    parsedDate.add(1, 'days');
+
+    // set the minimum date for the end datepicker
+    this.endDatePicker.setOption('minDate', parsedDate.toDate());
   }
 
   processRequest() {

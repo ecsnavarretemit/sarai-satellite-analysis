@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "../node_modules/flatpickr/dist/flatpickr.min.css",
         "styles.sass"
       ],
       "scripts": [],

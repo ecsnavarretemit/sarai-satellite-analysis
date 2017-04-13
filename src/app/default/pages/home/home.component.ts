@@ -5,7 +5,7 @@
  * Licensed under MIT
  */
 
-import { Component, ElementRef, Inject, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { EarthEngineService, LocationsService } from '../../../shared/services';
@@ -16,17 +16,13 @@ import { EarthEngineService, LocationsService } from '../../../shared/services';
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  public images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   public loaderVisible = false;
-  public noticeVisible = true;
+  public images: Observable<any[]>;
   public provinces: Observable<any[]>;
   public satellites: Observable<any[]>;
   public satelliteStyles: Observable<any[]>;
 
-  @ViewChild('imagesRowWrapper') imagesRowWrapper: ElementRef;
-
   constructor(
-    private renderer: Renderer2,
     private ee: EarthEngineService,
     private locations: LocationsService
   ) { }
@@ -42,10 +38,15 @@ export class HomeComponent implements OnInit {
   }
 
   onSatelliteDataFilter(data: any) {
-    this.renderer.addClass(this.imagesRowWrapper.nativeElement, 'loading');
-
-    this.noticeVisible = false;
     this.loaderVisible = true;
+
+    this.images = this.ee
+      .getSatelliteImages(data.startDate, data.endDate, {
+        province: data.province,
+        satellite: data.satellite
+      })
+      .map((res: any) => res.images)
+      ;
   }
 
 }

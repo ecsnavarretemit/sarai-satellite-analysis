@@ -8,36 +8,38 @@
                 (filter)="onSatelliteDataFilter($event)">
             </app-satellite-data-filter-form>
         </div>
-        <div class="col-md-9 satellite-images-wrapper" #imagesRowWrapper>
-            <div class="row">
-                <div class="preloader preloader--visible col-xs-12" *ngIf="loaderVisible">
-                    <div class="preloader__content">
-                        <div class="sk-wave">
-                            <div class="sk-rect sk-rect1"></div>
-                            <div class="sk-rect sk-rect2"></div>
-                            <div class="sk-rect sk-rect3"></div>
-                            <div class="sk-rect sk-rect4"></div>
-                            <div class="sk-rect sk-rect5"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="empty-message" *ngIf="noticeVisible">
-                    <p>
-                        No generated images yet! Please fill-up and submit the filter form
-                        on the left side to generate images from satellite data.
-                    </p>
-                </div>
-
-                <!--<app-responsive-media class="col-sm-3 col-md-4 col-lg-3" *ngFor="let image of images">
-                    <img
-                        src="https://placeholdit.imgix.net/~text?txtsize=33&amp;txt=256x256&amp;w=256&amp;h=256"
-                        alt="SARAi Logo"
-                        #media />
-                </app-responsive-media>-->
+        <div class="col-md-9 satellite-images-wrapper" [class.loading]="loaderVisible">
+            <div class="row" *ngIf="images | async as satelliteImages; else imagesLoading">
+                <app-responsive-media class="col-sm-3 col-md-4 col-lg-3" *ngFor="let image of satelliteImages">
+                    <img [src]="image.url" [alt]="image.date" #media />
+                </app-responsive-media>
             </div>
         </div>
     </div>
 </div>
+
+<ng-template #imagesLoading>
+    <div class="row">
+        <div class="preloader preloader--visible col-xs-12" *ngIf="loaderVisible">
+            <div class="preloader__content">
+                <div class="sk-wave">
+                    <div class="sk-rect sk-rect1"></div>
+                    <div class="sk-rect sk-rect2"></div>
+                    <div class="sk-rect sk-rect3"></div>
+                    <div class="sk-rect sk-rect4"></div>
+                    <div class="sk-rect sk-rect5"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="empty-message" *ngIf="!loaderVisible">
+            <p>
+                No generated images yet! Please fill-up and submit the filter form
+                on the left side to generate images from satellite data.
+            </p>
+        </div>
+    </div>
+</ng-template>
 
 

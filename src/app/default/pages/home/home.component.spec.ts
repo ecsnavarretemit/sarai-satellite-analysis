@@ -5,7 +5,6 @@
  * Licensed under MIT
  */
 
-import { Renderer2 } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SharedUiModule } from '../../../shared/ui';
@@ -25,7 +24,6 @@ describe('HomeComponent', () => {
         DefaultFormsModule
       ],
       providers: [
-        Renderer2,
         ...MOCKED_PROVIDERS
       ],
       declarations: [ HomeComponent ]

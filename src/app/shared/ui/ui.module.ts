@@ -10,18 +10,21 @@ import { CommonModule } from '@angular/common';
 
 import { ResponsiveMediaComponent } from './responsive-media/responsive-media.component';
 import { FlatpickerDirective } from './flatpicker.directive';
+import { ChoicesDirective } from './choices.directive';
 
 @NgModule({
   imports: [
     CommonModule
   ],
   declarations: [
+    ChoicesDirective,
+    FlatpickerDirective,
     ResponsiveMediaComponent,
-    FlatpickerDirective
   ],
   exports: [
+    ChoicesDirective,
+    FlatpickerDirective,
     ResponsiveMediaComponent,
-    FlatpickerDirective
   ]
 })
 export class UiModule { }

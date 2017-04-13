@@ -80,8 +80,22 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
     this.fpOptions = assign({}, this.fpOptions, newOptionObj);
 
     // process min date for mobile device
-    if (option === 'minDate' && this._datepickerMobile) {
-      const newDate = moment(value);
+    if (option === 'minDate') {
+      this.handleMobileDateMin(value);
+    }
+
+    // process max date for mobile device
+    if (option === 'maxDate') {
+      this.handleMobileDateMax(value);
+    }
+
+    // reflect the new plugin option
+    this._pluginInstance.set(option, value);
+  }
+
+  handleMobileDateMin(dateVal: Date) {
+    if (typeof dateVal !== 'undefined' && this._datepickerMobile) {
+      const newDate = moment(dateVal);
 
       // get the mobile input
       const mobileInput = (this.pluginInstance as any).mobileInput;
@@ -89,9 +103,18 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
       // set the minimum date for the mobile input
       this.renderer.setProperty(mobileInput, 'min', newDate.format('YYYY-MM-DD'));
     }
+  }
 
-    // reflect the new plugin option
-    this._pluginInstance.set(option, value);
+  handleMobileDateMax(dateVal) {
+    if (typeof dateVal !== 'undefined' && this._datepickerMobile) {
+      const newDate = moment(dateVal);
+
+      // get the mobile input
+      const mobileInput = (this.pluginInstance as any).mobileInput;
+
+      // set the minimum date for the mobile input
+      this.renderer.setProperty(mobileInput, 'max', newDate.format('YYYY-MM-DD'));
+    }
   }
 
   ngOnInit() {
@@ -131,14 +154,13 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
     this._datepickerMobile = this.isMobile;
 
     // process min date for mobile device
-    if (typeof this.fpOptions.minDate !== 'undefined' && this._datepickerMobile) {
-      const newDate = moment(this.fpOptions.minDate);
+    if (typeof this.fpOptions.minDate !== 'undefined') {
+      this.handleMobileDateMin(this.fpOptions.minDate);
+    }
 
-      // get the mobile input
-      const mobileInput = (this.pluginInstance as any).mobileInput;
-
-      // set the minimum date for the mobile input
-      this.renderer.setProperty(mobileInput, 'min', newDate.format('YYYY-MM-DD'));
+    // process max date for mobile device
+    if (typeof this.fpOptions.maxDate !== 'undefined') {
+      this.handleMobileDateMax(this.fpOptions.maxDate);
     }
   }
 

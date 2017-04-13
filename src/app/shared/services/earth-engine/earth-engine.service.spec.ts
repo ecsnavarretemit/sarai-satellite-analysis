@@ -12,9 +12,6 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { APIS_PROVIDER } from '../api-config.service';
 import { EarthEngineService } from './earth-engine.service';
 
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-
 describe('EarthEngineService', () => {
 
   beforeEach(() => {

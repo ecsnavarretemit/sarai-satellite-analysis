@@ -12,8 +12,6 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { APIS_PROVIDER } from '../api-config.service';
 import { LocationsService } from './locations.service';
 
-import 'rxjs/add/operator/map';
-
 describe('LocationsService', () => {
 
   beforeEach(() => {

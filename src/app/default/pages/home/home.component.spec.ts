@@ -13,8 +13,6 @@ import { HomeComponent } from './home.component';
 
 import { MOCKED_PROVIDERS } from '../../../shared/services';
 
-import 'rxjs/add/operator/share';
-
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;

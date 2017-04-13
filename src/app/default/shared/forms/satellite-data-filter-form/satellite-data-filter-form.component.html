@@ -22,7 +22,7 @@
                 #startDatePicker=flatpickr
                 (dateChange)="onStartDateChange($event)" />
 
-            <div class="input-group-addon" (click)="startDatePicker.showPicker()">
+            <div class="input-group-addon" *ngIf="!datepickerMobile" (click)="startDatePicker.showPicker()">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
             <div class="input-group-addon" (click)="startDatePicker.clearInput()">
@@ -45,7 +45,7 @@
                 appFlatpicker
                 #endDatePicker=flatpickr />
 
-            <div class="input-group-addon" (click)="endDatePicker.showPicker()">
+            <div class="input-group-addon" *ngIf="!datepickerMobile" (click)="endDatePicker.showPicker()">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
             </div>
             <div class="input-group-addon" (click)="endDatePicker.clearInput()">

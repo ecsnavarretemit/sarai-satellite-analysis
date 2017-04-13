@@ -5,7 +5,7 @@
  * Licensed under MIT
  */
 
-import { AfterViewInit, Directive, ElementRef, forwardRef, EventEmitter, Input, OnInit, OnDestroy, Output } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, forwardRef, EventEmitter, Input, OnInit, OnDestroy, Output, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as Flatpickr from 'flatpickr';
 import assign from 'lodash-es/assign';
@@ -31,7 +31,10 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
   private _propagateChange = (_: any) => {};
   private _propagateTouch = () => {};
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(
+    private elementRef: ElementRef,
+    private renderer: Renderer2
+  ) { }
 
   showPicker() {
     // idk why we need this but it works!!
@@ -92,6 +95,10 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
   }
 
   ngAfterViewInit() {
+    // make sure that the input element is of type text
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'type', 'text');
+
+    // instantiate the plugin
     this.pluginInstance = new Flatpickr(this.elementRef.nativeElement, this.fpOptions);
   }
 

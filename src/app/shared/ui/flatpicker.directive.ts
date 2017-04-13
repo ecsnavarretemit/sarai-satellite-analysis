@@ -8,7 +8,9 @@
 import { AfterViewInit, Directive, ElementRef, forwardRef, EventEmitter, Input, OnInit, OnDestroy, Output, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as Flatpickr from 'flatpickr';
+import * as moment from 'moment';
 import assign from 'lodash-es/assign';
+import padStart from 'lodash-es/padStart';
 
 @Directive({
   selector: '[appFlatpicker]',
@@ -20,7 +22,7 @@ import assign from 'lodash-es/assign';
   }]
 })
 export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
-  @Input('fpOptions') fpOptions: Flatpickr.Options = {};
+  @Input('fpOptions') fpOptions: any = {};
   @Output('close') close: EventEmitter<string> = new EventEmitter<string>();
   @Output('dateChange') dateChange: EventEmitter<string> = new EventEmitter<string>();
   @Output('open') open: EventEmitter<string> = new EventEmitter<string>();
@@ -28,6 +30,7 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
 
   public dateValue: string;
   private _pluginInstance: Flatpickr;
+  private _datepickerMobile = false;
   private _propagateChange = (_: any) => {};
   private _propagateTouch = () => {};
 
@@ -41,6 +44,11 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
     console.warn('Accessing this property may bear unexpected results. Please use the shimmed methods for the correct behavior.');
 
     return this._pluginInstance;
+  }
+
+  get isMobile(): boolean {
+    // retrieve the is mobile detection by the plugin
+    return (this._pluginInstance as any).isMobile;
   }
 
   showPicker() {
@@ -70,6 +78,17 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
 
     // merge the new option to the options property
     this.fpOptions = assign({}, this.fpOptions, newOptionObj);
+
+    // process min date for mobile device
+    if (option === 'minDate' && this._datepickerMobile) {
+      const newDate = moment(value);
+
+      // get the mobile input
+      const mobileInput = (this.pluginInstance as any).mobileInput;
+
+      // set the minimum date for the mobile input
+      this.renderer.setProperty(mobileInput, 'min', newDate.format('YYYY-MM-DD'));
+    }
 
     // reflect the new plugin option
     this._pluginInstance.set(option, value);
@@ -107,6 +126,20 @@ export class FlatpickerDirective implements AfterViewInit, OnDestroy, OnInit {
 
     // instantiate the plugin
     this._pluginInstance = new Flatpickr(this.elementRef.nativeElement, this.fpOptions);
+
+    // retrieve the is mobile detection by the plugin
+    this._datepickerMobile = this.isMobile;
+
+    // process min date for mobile device
+    if (typeof this.fpOptions.minDate !== 'undefined' && this._datepickerMobile) {
+      const newDate = moment(this.fpOptions.minDate);
+
+      // get the mobile input
+      const mobileInput = (this.pluginInstance as any).mobileInput;
+
+      // set the minimum date for the mobile input
+      this.renderer.setProperty(mobileInput, 'min', newDate.format('YYYY-MM-DD'));
+    }
   }
 
   ngOnDestroy() {

@@ -13,6 +13,8 @@
 // ------------------------------------------------------#
 
 export * from 'rxjs/add/operator/do';
+export * from 'rxjs/add/operator/debounceTime';
+export * from 'rxjs/add/operator/filter';
 export * from 'rxjs/add/operator/map';
 export * from 'rxjs/add/operator/share';
 
@@ -26,6 +28,7 @@ export * from 'rxjs/add/operator/share';
 // [Observables Addons] ::start
 // ------------------------------------------------------#
 
+export * from 'rxjs/add/observable/fromEvent';
 export * from 'rxjs/add/observable/of';
 
 // ------------------------------------------------------#

@@ -7,6 +7,8 @@
 
 import { AfterViewInit, Directive, ElementRef, forwardRef, EventEmitter, Input, OnInit, OnDestroy, Output, Renderer2 } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import * as Flatpickr from 'flatpickr';
 import * as moment from 'moment';
 import assign from 'lodash-es/assign';
@@ -31,6 +33,7 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
   public dateValue: string;
   private _pluginInstance: Flatpickr;
   private _datepickerMobile = false;
+  private _inputSubscription: Subscription;
   private _propagateChange = (_: any) => {};
   private _propagateTouch = () => {};
 
@@ -147,11 +150,32 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
     // make sure that the input element is of type text
     this.renderer.setAttribute(this.elementRef.nativeElement, 'type', 'text');
 
+    // make sure the datepicker is not blocked by the autocomplete
+    this.renderer.setAttribute(this.elementRef.nativeElement, 'autocomplete', 'off');
+
     // instantiate the plugin
     this._pluginInstance = new Flatpickr(this.elementRef.nativeElement, this.fpOptions);
 
     // retrieve the is mobile detection by the plugin
     this._datepickerMobile = this.isMobile;
+
+    // handle the user input
+    if (typeof this.fpOptions.allowInput !== 'undefined' && this.fpOptions.allowInput === true) {
+      this._inputSubscription = Observable
+        .fromEvent(this.elementRef.nativeElement, 'input')
+        .debounceTime(700)
+        .map((evt: any) => evt.target.value)
+        .filter((value: string) => value !== '')
+        .subscribe((value: string) => {
+          const dateInstance = this._pluginInstance.parseDate(value);
+
+          // reflect the date
+          if (dateInstance !== null) {
+            (this._pluginInstance as any).setDate(dateInstance, true);
+          }
+        })
+        ;
+    }
 
     // process min date for mobile device
     if (typeof this.fpOptions.minDate !== 'undefined') {
@@ -165,6 +189,12 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
   }
 
   ngOnDestroy() {
+    // unsubscribe to the event
+    if (typeof this._inputSubscription !== 'undefined') {
+      this._inputSubscription.unsubscribe();
+    }
+
+    // destroy the plugin
     this._pluginInstance.destroy();
   }
 
@@ -174,7 +204,7 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
     }
 
     if (typeof value !== 'undefined' && typeof this._pluginInstance !== 'undefined') {
-      this._pluginInstance.setDate(value);
+      (this._pluginInstance as any).setDate(value);
     }
   }
 

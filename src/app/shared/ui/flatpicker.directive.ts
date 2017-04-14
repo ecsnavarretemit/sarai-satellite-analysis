@@ -122,8 +122,13 @@ export class FlatpickerDirective implements AfterViewInit, ControlValueAccessor,
 
   ngOnInit() {
     // override onReady option since this is an angular implementation.
-    this.fpOptions.onReady = () => {
-      this.ready.emit('ready');
+    this.fpOptions.onReady = (selectedDates: Array<Date>, dateStr: string) => {
+      // make angular recognize the value of the input on initialization
+      if (dateStr !== '') {
+        this._propagateChange(dateStr);
+      }
+
+      this.ready.emit(dateStr);
     };
 
     // override onChange option since this is an angular implementation.

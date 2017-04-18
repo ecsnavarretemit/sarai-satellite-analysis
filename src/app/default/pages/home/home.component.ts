@@ -65,6 +65,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
         satellite: data.satellite
       })
       .map((res: any) => res.images)
+      .catch((err: any) => {
+        return Observable.of(null);
+      })
       ;
 
     this.processImages(imagesRequest);

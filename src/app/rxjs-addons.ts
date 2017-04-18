@@ -12,6 +12,7 @@
 // [Operators] ::start
 // ------------------------------------------------------#
 
+export * from 'rxjs/add/operator/catch';
 export * from 'rxjs/add/operator/do';
 export * from 'rxjs/add/operator/debounceTime';
 export * from 'rxjs/add/operator/filter';

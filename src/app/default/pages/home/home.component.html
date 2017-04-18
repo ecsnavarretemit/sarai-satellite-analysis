@@ -36,10 +36,18 @@
         </div>
 
         <div class="empty-message" *ngIf="!loaderVisible">
-            <p>
-                No generated images yet! Please fill-up and submit the filter form
-                on the left side to generate images from satellite data.
-            </p>
+            <h2>How to use:</h2>
+
+            <ol>
+                <li>Choose what satellite you want your images to come from.</li>
+                <li>Determine the coverage of the satellite you want to explore. Select the start date and end date. *</li>
+                <li>Select a province.</li>
+            </ol>
+
+            <strong>
+                * Some dates may not display images because of the availability of satellite data.
+                Complete available data, as of the moment, are from 2013-2016.
+            </strong>
         </div>
     </div>
 </ng-template>

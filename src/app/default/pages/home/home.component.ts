@@ -5,22 +5,25 @@
  * Licensed under MIT
  */
 
-import { Component, Inject, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { EarthEngineService, LocationsService } from '../../../shared/services';
+import { SatelliteDataFilterFormComponent } from '../../shared/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.sass']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit, OnInit {
   public loaderVisible = false;
   public images: Observable<any[]>;
   public provinces: Observable<any[]>;
   public satellites: Observable<any[]>;
   public satelliteStyles: Observable<any[]>;
+
+  @ViewChild(SatelliteDataFilterFormComponent) satelliteFilterForm: SatelliteDataFilterFormComponent;
 
   constructor(
     private ee: EarthEngineService,
@@ -35,6 +38,11 @@ export class HomeComponent implements OnInit {
       .getProvinces()
       .map((res: any) => res.result)
       ;
+  }
+
+  ngAfterViewInit() {
+    // set the satellite image style default value to ndvi
+    this.satelliteFilterForm.imageStyleRad.setValue('ndvi');
   }
 
   processImages(imagesRequest: Observable<any>) {

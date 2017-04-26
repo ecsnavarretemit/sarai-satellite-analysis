@@ -21,6 +21,7 @@ import { SatelliteDataFilterFormComponent } from '../../shared/forms';
 })
 export class HomeComponent implements AfterViewInit, OnInit {
   public loaderVisible = false;
+  public selectedProvince: string = null;
   public images: Observable<any[]>;
   public provinces: Observable<any[]>;
   public satellites: Observable<any[]>;
@@ -95,6 +96,9 @@ export class HomeComponent implements AfterViewInit, OnInit {
         return Observable.of(null);
       })
       ;
+
+    // set the province
+    this.selectedProvince = data.province;
 
     this.processImages(imagesRequest);
   }

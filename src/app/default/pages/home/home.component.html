@@ -11,11 +11,15 @@
 
         <div class="col-md-9 satellite-images-wrapper" [class.loading]="loaderVisible">
             <div class="row gallery" *ngIf="images | async as satelliteImages; else imagesLoading">
-                <app-responsive-media class="gallery__item col-sm-3 col-md-4 col-lg-3" *ngFor="let image of satelliteImages">
-                    <img [src]="image.url" [alt]="image.date" #media />
+                <div class="gallery__item col-sm-3 col-md-4 col-lg-3" *ngFor="let image of satelliteImages">
+                    <span class="text-center province-caption">{{ selectedProvince }}</span>
 
-                    <span class="text-center" caption>{{ image.date | date:'mediumDate' }}</span>
-                </app-responsive-media>
+                    <app-responsive-media>
+                        <img [src]="image.url" [alt]="image.date" #media />
+
+                        <span class="text-center" caption>{{ image.date | date:'mediumDate' }}</span>
+                    </app-responsive-media>
+                </div>
             </div>
         </div>
     </div>

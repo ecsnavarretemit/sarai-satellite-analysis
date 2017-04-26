@@ -69,6 +69,15 @@ export class HomeComponent implements AfterViewInit, OnInit {
         satellite: data.satellite
       })
       .map((res: any) => res.images)
+      .map((images: any[]) => {
+        // sort images by date
+        return images.sort((a, b) => {
+          const date1 = moment(a.date, 'YYYY-MM-DD');
+          const date2 = moment(b.date, 'YYYY-MM-DD');
+
+          return (date1.toDate() as any) - (date2.toDate() as any);
+        });
+      })
       .catch((err: any) => {
         const startDate = moment(this.satelliteFilterForm.startDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
         const endDate = moment(this.satelliteFilterForm.endDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');

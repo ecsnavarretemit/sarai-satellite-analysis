@@ -85,7 +85,7 @@
     <div class="form-group" [class.has-error]="!imageStyleRad.valid && imageStyleRad.touched">
         <div class="radio-inline" *ngFor="let imageStyle of imageStyles">
             <label class="radio_wrapper">
-                <input type="radio" name="lk_image_style_rad" [formControl]="imageStyleRad" [value]="imageStyle.slug" />
+                <input type="radio" name="lk_image_style_rad" [formControl]="imageStyleRad" [value]="imageStyle.slug" [attr.disabled]="!!imageStyle.disabled" />
                 <span class="radio_label">{{ imageStyle.name }}</span>
             </label>
         </div>

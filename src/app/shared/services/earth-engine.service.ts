@@ -40,7 +40,8 @@ export class EarthEngineService {
     return Observable.of([{
       id: 1,
       name: 'Natural',
-      slug: 'natural'
+      slug: 'natural',
+      disabled: true
     }, {
       id: 2,
       name: 'NDVI',

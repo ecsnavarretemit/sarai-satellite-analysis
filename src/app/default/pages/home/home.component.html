@@ -1,13 +1,15 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 satellite-filter-form-wrapper">
+        <section class="col-md-3 satellite-filter-form-wrapper">
+            <h2 class="heading heading-1">Comparative Satellite Images</h2>
+
             <app-satellite-data-filter-form
                 [provinces]="provinces | async"
                 [satellites]="satellites | async"
                 [imageStyles]="satelliteStyles | async"
                 (filter)="onSatelliteDataFilter($event)">
             </app-satellite-data-filter-form>
-        </div>
+        </section>
 
         <div class="col-md-9 satellite-images-wrapper" [class.loading]="loaderVisible">
             <div class="row gallery" *ngIf="images | async as satelliteImages; else imagesLoading">
@@ -44,7 +46,7 @@
                 <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" dismissible="true" (onClosed)="onAlertClose(alert.id)">{{ alert.msg }}</alert>
             </div>
 
-            <h2>How to use:</h2>
+            <h2 class="heading heading-1">How to use:</h2>
 
             <ol>
                 <li>Choose what satellite you want your images to come from.</li>

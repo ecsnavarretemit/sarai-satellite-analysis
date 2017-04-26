@@ -7,6 +7,9 @@
 
 import { AfterViewInit, Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import * as moment from 'moment';
+import filter from 'lodash-es/filter';
+import reject from 'lodash-es/reject';
 
 import { EarthEngineService, LocationsService } from '../../../shared/services';
 import { SatelliteDataFilterFormComponent } from '../../shared/forms';
@@ -22,6 +25,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   public provinces: Observable<any[]>;
   public satellites: Observable<any[]>;
   public satelliteStyles: Observable<any[]>;
+  public alerts = [];
 
   @ViewChild(SatelliteDataFilterFormComponent) satelliteFilterForm: SatelliteDataFilterFormComponent;
 
@@ -65,12 +69,43 @@ export class HomeComponent implements AfterViewInit, OnInit {
         satellite: data.satellite
       })
       .map((res: any) => res.images)
+      .map((images: any[]) => {
+        // sort images by date
+        return images.sort((a, b) => {
+          const date1 = moment(a.date, 'YYYY-MM-DD');
+          const date2 = moment(b.date, 'YYYY-MM-DD');
+
+          return (date1.toDate() as any) - (date2.toDate() as any);
+        });
+      })
       .catch((err: any) => {
+        const startDate = moment(this.satelliteFilterForm.startDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
+        const endDate = moment(this.satelliteFilterForm.endDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
+
+        // get the name of the satellite
+        const selectedSatellite = filter(this.satelliteFilterForm.satellites, ['slug', this.satelliteFilterForm.satelliteSel.value]);
+
+        this.alerts.push({
+          id: this.generateRandomChars(),
+          type: 'danger',
+          timeout: 10000,
+          msg: `Data not available for the dates ${startDate} to ${endDate} on ${(selectedSatellite[0] as any).name} satellite.`
+        });
+
         return Observable.of(null);
       })
       ;
 
     this.processImages(imagesRequest);
+  }
+
+  onAlertClose(id) {
+    // remove the message from the list of alerts
+    this.alerts = reject(this.alerts, ['id', id]);
+  }
+
+  generateRandomChars() {
+    return Math.random().toString(36).substring(7);
   }
 
 }

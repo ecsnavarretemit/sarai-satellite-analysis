@@ -36,6 +36,10 @@
         </div>
 
         <div class="empty-message" *ngIf="!loaderVisible">
+            <div *ngFor="let alert of alerts">
+                <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" dismissible="true" (onClosed)="onAlertClose(alert.id)">{{ alert.msg }}</alert>
+            </div>
+
             <h2>How to use:</h2>
 
             <ol>

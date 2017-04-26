@@ -7,6 +7,7 @@
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { SharedModule } from '../../shared';
 import { DefaultSharedModule } from '../shared';
@@ -15,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 @NgModule({
   imports: [
     CommonModule,
+    AlertModule,
     SharedModule,
     DefaultSharedModule
   ],

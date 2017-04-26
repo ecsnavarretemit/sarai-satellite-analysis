@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AppRoutingModule } from './app-routing.module';
 import { DefaultModule } from './default';
@@ -26,6 +27,7 @@ import './rxjs-addons';
     BrowserModule,
     FormsModule,
     HttpModule,
+    AlertModule.forRoot(),
     AppRoutingModule,
     ServicesModule.forRoot(),
     DefaultModule

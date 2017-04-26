@@ -12,15 +12,66 @@
         </section>
 
         <div class="col-md-9 satellite-images-wrapper" [class.loading]="loaderVisible">
-            <div class="row gallery" *ngIf="images | async as satelliteImages; else imagesLoading">
-                <div class="gallery__item col-sm-3 col-md-4 col-lg-3" *ngFor="let image of satelliteImages">
-                    <span class="text-center province-caption">{{ selectedProvince }}</span>
+            <div class="row" *ngIf="images | async as satelliteImages; else imagesLoading">
+                <section class="col-md-2 col-lg-1 col-md-push-10 col-lg-push-11 legend">
+                    <h3 class="heading heading-1 legend__title">NDVI</h3>
 
-                    <app-responsive-media>
-                        <img [src]="image.url" [alt]="image.date" #media />
+                    <ul class="list list-unstyled list--legend clearfix">
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #011301"></span>
+                            <span class="legend__value">1.0</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #012E01"></span>
+                            <span class="legend__value">0.9</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #023B01"></span>
+                            <span class="legend__value">0.8</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #004C00"></span>
+                            <span class="legend__value">0.7</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #056201"></span>
+                            <span class="legend__value">0.6</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #207401"></span>
+                            <span class="legend__value">0.5</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #66A000"></span>
+                            <span class="legend__value">0.4</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #FCD163"></span>
+                            <span class="legend__value">0.3</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #CE7E45"></span>
+                            <span class="legend__value">0.2</span>
+                        </li>
+                        <li class="list__item clearfix legend__item">
+                            <span class="legend__color-block" style="background-color: #FFFFFF"></span>
+                            <span class="legend__value">0.1</span>
+                        </li>
+                    </ul>
+                </section>
 
-                        <span class="text-center" caption>{{ image.date | date:'mediumDate' }}</span>
-                    </app-responsive-media>
+                <div class="gallery col-md-10 col-lg-11 col-md-pull-2 col-lg-pull-1">
+                    <div class="row">
+                        <div class="gallery__item col-sm-4 col-md-4 col-lg-3" *ngFor="let image of satelliteImages">
+                            <span class="text-center province-caption">{{ selectedProvince }}</span>
+
+                            <app-responsive-media>
+                                <img [src]="image.url" [alt]="image.date" #media />
+
+                                <span class="text-center" caption>{{ image.date | date:'mediumDate' }}</span>
+                            </app-responsive-media>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

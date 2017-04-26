@@ -1,0 +1,81 @@
+// ******************************************************#
+// [_legends.sass]
+// ******************************************************#
+
+.legend
+  .legend__title
+    text-align: center
+
+  .list--legend
+    max-width: 300px
+    margin: 0 auto 10px auto
+
+    .legend__item
+      display: block
+      float: left
+      width: 10%
+      max-width: 30px
+
+    .legend__color-block,
+    .legend__value
+      display: block
+
+    .legend__value
+      text-align: center
+
+    .legend__color-block
+      width: 100%
+      background-color: #000000
+
+      &:after
+        content: ""
+        display: block
+        padding-bottom: 100%
+
+// --------------------------------------
+// [Browser Width: 992px up] ::start
+// --------------------------------------
+
++min-screen(992px)
+  .legend
+    .list--legend
+      .legend__item
+        float: none
+        width: auto
+        max-width: none
+
+      .legend__color-block,
+      .legend__value
+        float: left
+
+      .legend__value
+        text-align: left
+        line-height: 2
+
+      .legend__color-block
+        max-width: 30px
+        margin-right: 10px
+
+// --------------------------------------
+// [Browser Width: 992px up] ::end
+// --------------------------------------
+
+// --------------------------------------
+// [Browser Width: 1200px to 1431px] ::start
+// --------------------------------------
+
++screen(1200px, 1431px)
+  .legend
+    .list--legend
+      .legend__color-block
+        max-width: 20px
+        margin-right: 5px
+
+      .legend__value
+        line-height: 1.45
+
+// --------------------------------------
+// [Browser Width: 1200px to 1431px] ::end
+// --------------------------------------
+
+

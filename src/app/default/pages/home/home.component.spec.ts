@@ -8,6 +8,7 @@
 import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, inject, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { ResponsiveMediaComponent, SharedUiModule } from '../../../shared/ui';
 import { DefaultFormsModule } from '../../shared/forms';
@@ -23,7 +24,8 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         SharedUiModule,
-        DefaultFormsModule
+        DefaultFormsModule,
+        AlertModule
       ],
       providers: [
         ...MOCKED_PROVIDERS

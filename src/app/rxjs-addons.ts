@@ -18,6 +18,7 @@ export * from 'rxjs/add/operator/debounceTime';
 export * from 'rxjs/add/operator/filter';
 export * from 'rxjs/add/operator/map';
 export * from 'rxjs/add/operator/share';
+export * from 'rxjs/add/operator/switchMap';
 
 // ------------------------------------------------------#
 // [Operators] ::end

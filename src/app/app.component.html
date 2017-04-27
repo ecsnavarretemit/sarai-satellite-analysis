@@ -1,5 +1,5 @@
 <div class="main-container">
-    <div class="navbar navbar-main navbar-default">
+    <div class="navbar navbar-default navbar--main navbar--s-1">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button"
@@ -100,6 +100,35 @@
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-default navbar--monitoring">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h2 id="logo" class="logo navbar-brand">
+                    Monitoring
+                </h2>
+            </div>
+
+            <div class="collapse navbar-collapse" id="main-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://sarai.ph/weather-monitoring">Weather</a>
+                    </li>
+                    <li>
+                        <a href="http://sarai.ph/heat-map-rainfall-outlook">Rainfall Outlook</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/']">Comparative Satellite Images</a>
+                    </li>
+                    <li>
+                        <a href="http://sarai.ph/suitability-gallery">Suitability</a>
+                    </li>
+                    <li>
+                        <a href="http://sarai.ph/advisories">Advisory</a>
                     </li>
                 </ul>
             </div>

@@ -11,6 +11,12 @@
     margin-top: 5px
     height: 40px
 
+.navbar--monitoring
+  display: none
+
+  .navbar-brand
+      line-height: 2.6
+
 // ------------------------------------------------------#
 // [Navbar] ::end
 // ------------------------------------------------------#
@@ -21,7 +27,13 @@
 
 +min-screen(768px)
 
-  .navbar-nav
+  .navbar--main
+    margin-bottom: 0
+
+  .navbar--monitoring
+    display: block
+
+  .navbar--s-1 .navbar-nav
     > li > a
       padding-top: 17.5px
       padding-bottom: 17.5px

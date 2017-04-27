@@ -5,19 +5,30 @@
  * Licensed under MIT
  */
 
-import { Component, ElementRef, HostListener, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, QueryList, Renderer2, ViewChildren } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   public navbarVisible = false;
 
   @ViewChildren('dropdown') dropdowns: QueryList<ElementRef>;
 
-  constructor(private renderer: Renderer2) {  }
+  constructor(
+    private renderer: Renderer2,
+    private meta: Meta
+  ) {  }
+
+  ngAfterViewInit() {
+    // update theme color for android
+    this.meta.updateTag({
+      content: '#DCE2E2'
+    }, 'name="theme-color"');
+  }
 
   enableDropdown(el) {
     // flag to determine if class should be added or not

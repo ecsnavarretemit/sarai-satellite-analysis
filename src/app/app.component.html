@@ -136,7 +136,149 @@
         </div>
     </div>
 
-    <router-outlet></router-outlet>
+    <main id="main-content">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="col-sm-6 col-md-4 col__item">
+                    <h2 class="heading-1">About SARAi</h2>
+
+                    <p>
+                        Project SARAi aims to develop a national crop forecasting and monitoring system for first six priority crops:
+                        rice, corn, banana, coconut, coffee, cacao. This project is funded by DOST-PCAARRD.
+                    </p>
+
+                    <ul class="list list-unstyled list-inline list--agencies-logos">
+                        <li class="list__item">
+                            <a href="http://www.dost.gov.ph/" class="link">
+                                <img src="/assets/img/ui/dost.png" alt="DOST" class="img-responsive" />
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="http://www.pcaarrd.dost.gov.ph/home/portal/" class="link">
+                                <img src="/assets/img/ui/pcaarrd.png" alt="PCAARRD" class="img-responsive" />
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="http://www.uplb.edu.ph/" class="link">
+                                <img src="/assets/img/ui/uplb.png" alt="UPLB" class="img-responsive" />
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="col-sm-6 col-md-4 col__item">
+                    <h2 class="heading-1">Connect With Us</h2>
+
+                    <ul class="list list-unstyled list--contact-details">
+                        <li class="list__item">
+                            <span class="glyphicon glyphicon-earphone contact-details__icon" aria-hidden="true"></span>
+                            <span class="contact-details__value">
+                                <a href="tel:+63 (049) 536 2836" class="link link--phone-num">+63 (049) 536 2836</a>,
+                                <a href="tel:+63 (049) 536 3080" class="link link--phone-num">+63 (049) 536 3080</a>
+                            </span>
+                        </li>
+                        <li class="list__item">
+                            <span class="glyphicon glyphicon-envelope contact-details__icon" aria-hidden="true"></span>
+                            <span class="contact-details__value">
+                                <a href="mailto:sarai@uplb.edu.ph" class="link link--mailto">
+                                    sarai@uplb.edu.ph
+                                </a>
+                            </span>
+                        </li>
+                        <li class="list__item">
+                            <span class="glyphicon glyphicon-map-marker contact-details__icon" aria-hidden="true"></span>
+                            <span class="contact-details__value">SESAM UPLB, College, Laguna Philippines 4031</span>
+                        </li>
+                    </ul>
+
+                    <ul class="list list-unstyled list-inline list--social">
+                        <li class="list__item">
+                            <a href="https://www.facebook.com/projectsarai/" class="link link--facebook">
+                                <i class="fa fa-facebook link__icon" aria-hidden="true"></i>
+                                <span class="hidden">Facebook</span>
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="https://twitter.com/projectsarai_ph" class="link link--twitter">
+                                <i class="fa fa-twitter link__icon" aria-hidden="true"></i>
+                                <span class="hidden">Twitter</span>
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="https://www.youtube.com/channel/UCJtzNfVmoqFZGCF326VaTZw" class="link link--youtube">
+                                <i class="fa fa-youtube-play link__icon" aria-hidden="true"></i>
+                                <span class="hidden">Youtube</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="col-sm-12 col-md-4 col__item">
+                    <h2 class="heading-1">Site Map</h2>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <ul class="list list-unstyled list--site-map">
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/about-us">SARAi</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/icm-rice">Crops</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://maps.sarai.ph">Maps</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph">Services</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4">
+                            <ul class="list list-unstyled list--site-map">
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/advisories">Alerts and Advisories</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://pests.sarai.ph/">SPId Tech</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/weather-monitoring">Monitoring</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://opendata.sarai.ph/">Open Data</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4">
+                            <ul class="list list-unstyled list--site-map">
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/rainfall-distribution">Planting Guide</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://eskwela.sarai.ph/index.php?option=com_content&amp;view=article&amp;id=38&amp;Itemid=319">SARAi Eskwela</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="https://goo.gl/forms/i4jW7LshCSQpuyZ23">Subscribe</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="col-xs-12 col__item">
+                    <p id="copyright" class="text-center">
+                        Copyright 2017 - Project SARAi
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </div>
 
 

@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Observable';
 import * as moment from 'moment';
 import filter from 'lodash-es/filter';
 import reject from 'lodash-es/reject';
+import 'rxjs/add/observable/throw'; // cannot be exported via rxjs-addons file.
 
 import { EarthEngineService, LocationsService } from '../../../shared/services';
 import { SatelliteDataFilterFormComponent } from '../../shared/forms';
@@ -64,10 +65,17 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
 
   onSatelliteDataFilter(data: any) {
-    const imagesRequest = this.ee
-      .getSatelliteImages(data.startDate, data.endDate, {
-        province: data.province,
-        satellite: data.satellite
+    const imagesRequest = Observable
+      .of(data)
+      .switchMap((formData: any) => {
+        if (formData.satellite === 'sentinel-1') {
+          return Observable.throw(new Error('Sorry! Sentinel 1 it not yet implemented. Please try again later. Thank you!'));
+        }
+
+        return  this.ee.getSatelliteImages(formData.startDate, formData.endDate, {
+          province: formData.province,
+          satellite: formData.satellite
+        });
       })
       .map((res: any) => res.images)
       .map((images: any[]) => {
@@ -80,18 +88,28 @@ export class HomeComponent implements AfterViewInit, OnInit {
         });
       })
       .catch((err: any) => {
-        const startDate = moment(this.satelliteFilterForm.startDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
-        const endDate = moment(this.satelliteFilterForm.endDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
-
         // get the name of the satellite
         const selectedSatellite = filter(this.satelliteFilterForm.satellites, ['slug', this.satelliteFilterForm.satelliteSel.value]);
-
-        this.alerts.push({
+        let alert = {
           id: this.generateRandomChars(),
           type: 'danger',
           timeout: 10000,
-          msg: `Data not available for the dates ${startDate} to ${endDate} on ${(selectedSatellite[0] as any).name} satellite.`
-        });
+          msg: err.message
+        };
+
+        if (this.satelliteFilterForm.satelliteSel.value !== 'sentinel-1') {
+          const startDate = moment(this.satelliteFilterForm.startDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
+          const endDate = moment(this.satelliteFilterForm.endDateTxt.value, 'YYYY-MM-DD').format('MMMM D, YYYY');
+
+          alert = {
+            id: this.generateRandomChars(),
+            type: 'danger',
+            timeout: 10000,
+            msg: `Data not available for the dates ${startDate} to ${endDate} on ${(selectedSatellite[0] as any).name} satellite.`
+          };
+        }
+
+        this.alerts.push(alert);
 
         return Observable.of(null);
       })

@@ -6,37 +6,40 @@
 // [Navbar] ::start
 // ------------------------------------------------------#
 
-.navbar--s-1
-  z-index: 55
+#main-navbar
+  .img
+    margin-top: 5px
+    height: 40px
 
-  background-color: rgba(27, 83, 52, 0.9)
-  border: none
+.navbar--monitoring
+  display: none
 
-  +border-top-radius(0)
-  +border-right-radius(0)
-  +border-bottom-radius(0)
-  +border-left-radius(0)
-
-  .navbar-header
-    padding: 5px 10px
+  .navbar-brand
+    line-height: 2.6
 
 // ------------------------------------------------------#
 // [Navbar] ::end
 // ------------------------------------------------------#
 
-
-
-// ------------------------------------------------------#
-// [Browser Width: 768px up] ::start
-// ------------------------------------------------------#
+// --------------------------------------
+// [Browser Width: 788px up] ::start
+// --------------------------------------
 
 +min-screen(768px)
-  .navbar--s-1
-    .navbar-header
-      padding: 0
 
-// ------------------------------------------------------#
-// [Browser Width: 768px up] ::end
-// ------------------------------------------------------#
+  .navbar--main
+    margin-bottom: 0
+
+  .navbar--monitoring
+    display: block
+
+  .navbar--s-1 .navbar-nav
+    > li > a
+      padding-top: 17.5px
+      padding-bottom: 17.5px
+
+// --------------------------------------
+// [Browser Width: 788px up] ::end
+// --------------------------------------
 
 

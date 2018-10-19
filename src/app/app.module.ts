@@ -9,9 +9,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { AppRoutingModule } from './app-routing.module';
+import { DefaultModule } from './default';
+import { ServicesModule } from './shared';
 import { AppComponent } from './app.component';
+
+// rxjs operators and observables addons
+import './rxjs-addons';
 
 @NgModule({
   declarations: [
@@ -21,9 +27,14 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AlertModule.forRoot(),
+    AppRoutingModule,
+    ServicesModule.forRoot(),
+    DefaultModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

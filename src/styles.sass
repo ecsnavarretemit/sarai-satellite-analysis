@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+// ******************************************************#
+// [Styles]
+// ******************************************************#
+
+@import "sass/modules/main/main"
+
+// ------------------------------------------------------#
+// [Application Loader] ::start
+// ------------------------------------------------------#
+
+app-root
+  display: block
+
+app-root > .preloader
+  background-color: #1b5334
+  opacity: 1
+  z-index: 100
+
+// [No JavaScript] ::start
+.no-js .preloader--base .sk-wave
+  display: none
+
+.no-js-message
+  display: none
+  width: 40em
+  margin: 0 auto
+  text-align: center
+
+  h1
+    font-size: 1.5em
+    color: #FFFFFF
+
+  p
+    color: #FFFFFF
+
+  .no-js &
+    display: block
+// [No JavaScript] ::end
+
+// ------------------------------------------------------#
+// [Application Loader] ::end
+// ------------------------------------------------------#
+
+

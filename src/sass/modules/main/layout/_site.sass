@@ -1,0 +1,192 @@
+// ******************************************************#
+// [Site Sass Entry Point]
+// ******************************************************#
+
+// ------------------------------------------------------#
+// [General Styles] ::start
+// ------------------------------------------------------#
+
+#logo
+  margin: 5px 0 0 5px
+  padding: 0
+
+.agencies-logo-wrapper
+  display: none
+  margin-left: 25px
+
+// [Footer] ::start
+
+.footer
+  margin-top: 20px
+  padding: 20px 0
+  background-color: #444440
+  color: #FFFFFF
+
+  .container-fluid > .row > .col__item
+    margin-top: 20px
+
+  .heading-1
+    margin-bottom: 20px
+
+  #copyright
+    margin-bottom: 0
+
+// [Footer] ::end
+
+// ------------------------------------------------------#
+// [General Styles] ::end
+// ------------------------------------------------------#
+
+
+// ------------------------------------------------------#
+// [Headings] ::start
+// ------------------------------------------------------#
+
+.heading-1
+  margin-top: 0
+
+// ------------------------------------------------------#
+// [Headings] ::end
+// ------------------------------------------------------#
+
+
+// ------------------------------------------------------#
+// [Links] ::start
+// ------------------------------------------------------#
+
+.link
+  color: #FFFFFF
+
+  &:hover,
+  &:focus
+    color: #FFFFFF
+
+// ------------------------------------------------------#
+// [Links] ::end
+// ------------------------------------------------------#
+
+
+// ------------------------------------------------------#
+// [Lists] ::start
+// ------------------------------------------------------#
+
+.list--agencies-logos
+  margin-top: 20px
+
+  .img-responsive
+    max-width: 80px
+
+.list--contact-details
+  .list__item
+    position: relative
+    margin-bottom: 15px
+
+    .contact-details__icon
+      position: absolute
+      top: 0
+      left: 0
+      display: block
+      font-size: 1.4em
+
+    .contact-details__value
+      display: block
+      margin-left: 30px
+
+.list--social
+  .link
+    position: relative
+    display: block
+    width: 40px
+    height: 40px
+    color: #FFFFFF
+    background-color: #323232
+
+    +border-top-radius(250px)
+    +border-right-radius(250px)
+    +border-bottom-radius(250px)
+    +border-left-radius(250px)
+    +transition(background-color 0.5s)
+
+    &:hover
+      background-color: lighten(#323232, 20%)
+
+    &.link--facebook:hover
+      background-color: #265999
+
+    &.link--twitter:hover
+      background-color: #00b1ef
+
+    &.link--youtube:hover
+      background-color: #f00028
+
+    .link__icon
+      position: absolute
+      top: 50%
+      left: 50%
+
+      +transform(translate3d(-50%, -50%, 0))
+
+.list--site-map
+  .list__item
+    margin-bottom: 5px
+
+// ------------------------------------------------------#
+// [Lists] ::end
+// ------------------------------------------------------#
+
+
+// ------------------------------------------------------#
+// [Aspect Ratio] ::start
+// ------------------------------------------------------#
+
+// .aspect-ratio-11x5
+//   padding-bottom: 45.4545455% !important
+
+// ------------------------------------------------------#
+// [Aspect Ratio] ::end
+// ------------------------------------------------------#
+
+// ------------------------------------------------------#
+// [Browser Width: 1200px up] ::start
+// ------------------------------------------------------#
+
++min-screen-height(900px)
+
+  #main-content
+    min-height: 479px
+
+// ------------------------------------------------------#
+// [Browser Width: 1200px up] ::end
+// ------------------------------------------------------#
+
+
+// ------------------------------------------------------#
+// [Browser Width: 920px up] ::start
+// ------------------------------------------------------#
+
++min-screen(920px)
+
+  .agencies-logo-wrapper
+    display: block
+
+// ------------------------------------------------------#
+// [Browser Width: 920px up] ::end
+// ------------------------------------------------------#
+
+
+// ------------------------------------------------------#
+// [Browser Width: 1200px up] ::start
+// ------------------------------------------------------#
+
++min-screen(1200px)
+
+  .footer > .container-fluid
+    max-width: 1400px
+    margin: 0 auto
+
+// ------------------------------------------------------#
+// [Browser Width: 1200px up] ::end
+// ------------------------------------------------------#
+
+
+

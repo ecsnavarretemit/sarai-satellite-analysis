@@ -1,4 +1,284 @@
-<h1>
-  {{title}}
-</h1>
-<router-outlet></router-outlet>
+<div class="main-container">
+    <div class="navbar navbar-default navbar--main navbar--s-1">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button"
+                    class="navbar-toggle"
+                    data-toggle="collapse"
+                    data-target="#main-navbar"
+                    [class.collapsed]="!navbarVisible"
+                    (click)="navbarVisible = !navbarVisible">
+
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <h1 id="logo" class="logo navbar-brand">
+                    <a class="logo__link" href="http://sarai.ph">
+                        <img src="/assets/img/ui/sarai-logo-long-green.png" alt="Project SARAi" class="img hidden-xs"/>
+                        <img src="/assets/img/ui/sarai-logo-green.png" alt="Project SARAi" class="img visible-xs-block"/>
+                    </a>
+                    <span class="hidden">Project SARAi</span>
+                </h1>
+            </div>
+
+            <div class="collapse navbar-collapse" id="main-navbar" [class.in]="navbarVisible">
+                <div class="agencies-logo-wrapper pull-right">
+                    <img src="/assets/img/ui/dost-pcaarrd-uplb.png" alt="DOST, PCAARRD, and UPLB" class="img" />
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://sarai.ph/about-us">SARAi</a>
+                    </li>
+                    <li class="dropdown" #dropdown #dropdown1 (click)="enableDropdown(dropdown1)">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" (click)="dropdownLinkNoop($event)">
+                            Crops
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="http://sarai.ph/icm-rice">Rice</a></li>
+                            <li><a href="http://sarai.ph/icm-corn">Corn</a></li>
+                            <li><a href="http://sarai.ph/icm-banana">Banana</a></li>
+                            <li><a href="http://sarai.ph/icm-coconut">Coconut</a></li>
+                            <li><a href="http://sarai.ph/icm-coffee">Coffee</a></li>
+                            <li><a href="http://sarai.ph/icm-cacao">Cacao</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" #dropdown #dropdown2 (click)="enableDropdown(dropdown2)">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" (click)="dropdownLinkNoop($event)">
+                            Maps
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li><a href="http://202.92.144.49/suitability-maps">Suitability Maps</a></li>
+                            <li><a href="http://202.92.144.49/crop-production-area">Crop Production Area</a></li>
+                            <li><a href="http://202.92.144.49/ndvi">Normalized Difference Vegetation Index</a></li>
+                            <li><a href="http://202.92.144.49/rainfall-maps">Rainfall Map</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown" #dropdown #dropdown3 (click)="enableDropdown(dropdown3)">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" (click)="dropdownLinkNoop($event)">
+                            Services
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="http://sarai.ph/advisories">Alerts and Advisories</a>
+                            </li>
+                            <li>
+                                <a href="http://sarai.ph/weather-monitoring">Monitoring</a>
+                            </li>
+                            <li>
+                                <a href="http://sarai.ph/rainfall-distribution">Planting Guide</a>
+                            </li>
+                            <!-- <li>
+                                <a href="https://pests.sarai.ph/">SPIDTech</a>
+                            </li> -->
+                            <li>
+                                <a href="http://opendata.sarai.ph/">Open Data</a>
+                            </li>
+                            <!-- <li>
+                                <a href="http://portal.sarai.ph/index.php?option=com_content&amp;view=article&amp;id=38&amp;Itemid=319">SARAi Eskwela</a>
+                            </li> -->
+                        </ul>
+                    </li>
+                    <li class="dropdown" #dropdown #dropdown4 (click)="enableDropdown(dropdown4)">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" (click)="dropdownLinkNoop($event)">
+                            Contact Us
+                            <span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="https://goo.gl/forms/i4jW7LshCSQpuyZ23">
+                                    Subscribe
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-default navbar--monitoring">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <h2 id="logo" class="logo navbar-brand text-uppercase">
+                    Monitoring
+                </h2>
+            </div>
+
+            <div class="collapse navbar-collapse" id="main-navbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="http://sarai.ph/weather-monitoring">Weather</a>
+                    </li>
+                    <li>
+                        <a href="http://sarai.ph/heat-map-rainfall-outlook">Rainfall Outlook</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/']">Comparative Satellite Images</a>
+                    </li>
+                    <li>
+                        <a href="http://sarai.ph/suitability-gallery">Suitability</a>
+                    </li>
+                    <li>
+                        <a href="http://sarai.ph/advisories">Advisory</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <router-outlet></router-outlet>
+    </main>
+
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <section class="col-sm-6 col-md-4 col__item">
+                    <h2 class="heading-1">About SARAi</h2>
+
+                    <p>
+                        Project SARAi aims to develop a national crop forecasting and monitoring system for first six priority crops:
+                        rice, corn, banana, coconut, coffee, cacao. This project is funded by DOST-PCAARRD.
+                    </p>
+
+                    <ul class="list list-unstyled list-inline list--agencies-logos">
+                        <li class="list__item">
+                            <a href="http://www.dost.gov.ph/" class="link">
+                                <img src="/assets/img/ui/dost.png" alt="DOST" class="img-responsive" />
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="http://www.pcaarrd.dost.gov.ph/home/portal/" class="link">
+                                <img src="/assets/img/ui/pcaarrd.png" alt="PCAARRD" class="img-responsive" />
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="http://www.uplb.edu.ph/" class="link">
+                                <img src="/assets/img/ui/uplb.png" alt="UPLB" class="img-responsive" />
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="col-sm-6 col-md-4 col__item">
+                    <h2 class="heading-1">Connect With Us</h2>
+
+                    <ul class="list list-unstyled list--contact-details">
+                        <li class="list__item">
+                            <span class="glyphicon glyphicon-earphone contact-details__icon" aria-hidden="true"></span>
+                            <span class="contact-details__value">
+                                <a href="tel:+63 (049) 536 2836" class="link link--phone-num">+63 (049) 536 2836</a>,
+                                <a href="tel:+63 (049) 536 3080" class="link link--phone-num">+63 (049) 536 3080</a>
+                            </span>
+                        </li>
+                        <li class="list__item">
+                            <span class="glyphicon glyphicon-envelope contact-details__icon" aria-hidden="true"></span>
+                            <span class="contact-details__value">
+                                <a href="mailto:sarai@uplb.edu.ph" class="link link--mailto">
+                                    sarai@uplb.edu.ph
+                                </a>
+                            </span>
+                        </li>
+                        <li class="list__item">
+                            <span class="glyphicon glyphicon-map-marker contact-details__icon" aria-hidden="true"></span>
+                            <span class="contact-details__value">SESAM UPLB, College, Laguna Philippines 4031</span>
+                        </li>
+                    </ul>
+
+                    <ul class="list list-unstyled list-inline list--social">
+                        <li class="list__item">
+                            <a href="https://www.facebook.com/projectsarai/" class="link link--facebook">
+                                <i class="fa fa-facebook link__icon" aria-hidden="true"></i>
+                                <span class="hidden">Facebook</span>
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="https://twitter.com/projectsarai_ph" class="link link--twitter">
+                                <i class="fa fa-twitter link__icon" aria-hidden="true"></i>
+                                <span class="hidden">Twitter</span>
+                            </a>
+                        </li>
+                        <li class="list__item">
+                            <a href="https://www.youtube.com/channel/UCJtzNfVmoqFZGCF326VaTZw" class="link link--youtube">
+                                <i class="fa fa-youtube-play link__icon" aria-hidden="true"></i>
+                                <span class="hidden">Youtube</span>
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="col-sm-12 col-md-4 col__item">
+                    <h2 class="heading-1">Site Map</h2>
+
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
+                            <ul class="list list-unstyled list--site-map">
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/about-us">SARAi</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/icm-rice">Crops</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://maps.sarai.ph">Maps</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph">Services</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4">
+                            <ul class="list list-unstyled list--site-map">
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/advisories">Alerts and Advisories</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://pests.sarai.ph/">SPId Tech</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/weather-monitoring">Monitoring</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://opendata.sarai.ph/">Open Data</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-sm-4">
+                            <ul class="list list-unstyled list--site-map">
+                                <li class="list__item">
+                                    <a class="link" href="http://sarai.ph/rainfall-distribution">Planting Guide</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="http://portal.sarai.ph/index.php?option=com_content&amp;view=article&amp;id=38&amp;Itemid=319">SARAi Eskwela</a>
+                                </li>
+                                <li class="list__item">
+                                    <a class="link" href="https://goo.gl/forms/i4jW7LshCSQpuyZ23">Subscribe</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="col-xs-12 col__item">
+                    <p id="copyright" class="text-center">
+                        Copyright 2017 - Project SARAi
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+

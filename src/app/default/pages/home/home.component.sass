@@ -1,0 +1,82 @@
+// ******************************************************#
+// [home.component.sass]
+// ******************************************************#
+
+@import "node_modules/bourbon/app/assets/stylesheets/bourbon"
+@import "node_modules/sass-mediaqueries/media-queries"
+
+.satellite-images-wrapper
+  margin-top: 20px
+
+  &.loading
+    height: 600px
+
+  .row
+    position: relative
+    height: inherit
+
+  .preloader
+    width: calc(100% - 30px)
+    left: 15px
+
+.empty-message
+  width: 93%
+  margin: 0 auto
+
+
+
+// ------------------------------------------------------#
+// [Gallery] ::start
+// ------------------------------------------------------#
+
+.gallery
+  .gallery__item
+    margin-bottom: 20px
+
+    .province-caption
+      display: block
+      margin-bottom: 10px
+
+    &:last-child
+      margin-bottom: 0
+
+// ------------------------------------------------------#
+// [Gallery] ::end
+// ------------------------------------------------------#
+
+
+
+// ------------------------------------------------------#
+// [Browser Width: 768px up] ::start
+// ------------------------------------------------------#
+
++min-screen(768px)
+  .gallery
+    .gallery__item:last-child
+      margin-bottom: 20px
+
+// ------------------------------------------------------#
+// [Browser Width: 768px up] ::end
+// ------------------------------------------------------#
+
+
+
+// ------------------------------------------------------#
+// [Browser Width: 992px up] ::start
+// ------------------------------------------------------#
+
++min-screen(992px)
+
+  .satellite-images-wrapper
+    margin-top: 0
+
+    &.loading
+      height: calc(100vh - 150px)
+      min-height: 0
+
+// ------------------------------------------------------#
+// [Browser Width: 992px up] ::end
+// ------------------------------------------------------#
+
+
+

@@ -1,3 +1,10 @@
+/*!
+ * App E2E Test
+ *
+ * Copyright(c) Exequiel Ceasar Navarrete <esnavarrete1@up.edu.ph>
+ * Licensed under MIT
+ */
+
 import { SaraiSatelliteAnalysisPage } from './app.po';
 
 describe('sarai-satellite-analysis App', () => {
@@ -12,3 +19,5 @@ describe('sarai-satellite-analysis App', () => {
     expect(page.getParagraphText()).toEqual('app works!');
   });
 });
+
+
